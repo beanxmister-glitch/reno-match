@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>RenoMatch - Find Trusted Interior Designers</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{--primary:#1a1a2e;--secondary:#16213e;--accent:#e94560;--accent-light:#ff6b6b;--background:#0f0f1a;--surface:#1f1f3a;--text-primary:#ffffff;--text-secondary:#a0a0b8;--success:#4ade80;--glass:rgba(31,31,58,0.6);--glass-border:rgba(255,255,255,0.1)}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{font-family:"DM Sans",sans-serif;background:var(--background);color:var(--text-primary);line-height:1.6;overflow-x:hidden}
+.bg-effects{position:fixed;top:0;left:0;width:100%;height:100%;pointer-events:none;z-index:0;overflow:hidden}
+.bg-effects::before{content:"";position:absolute;top:-50%;left:-50%;width:200%;height:200%;background:radial-gradient(ellipse at 20% 20%,rgba(233,69,96,0.08) 0%,transparent 50%),radial-gradient(ellipse at 80% 80%,rgba(22,33,62,0.5) 0%,transparent 50%);animation:bgPulse 15s ease-in-out infinite}
+@keyframes bgPulse{0%,100%{transform:translate(0,0)}50%{transform:translate(-5%,5%)}}
+.orb{position:absolute;border-radius:50%;filter:blur(80px);opacity:0.4}
+.orb-1{width:400px;height:400px;background:var(--accent);top:10%;right:-100px;animation:float1 20s ease-in-out infinite}
+.orb-2{width:300px;height:300px;background:var(--secondary);bottom:20%;left:-50px;animation:float2 25s ease-in-out infinite}
+@keyframes float1{0%,100%{transform:translate(0,0)}50%{transform:translate(-50px,50px)}}
+@keyframes float2{0%,100%{transform:translate(0,0)}50%{transform:translate(30px,-30px)}}
+.container{max-width:1200px;margin:0 auto;padding:0 24px;position:relative;z-index:1}
+.navbar{position:fixed;top:0;left:0;right:0;padding:20px 0;z-index:1000;transition:all 0.3s ease}
+.navbar.scrolled{background:rgba(15,15,26,0.95);backdrop-filter:blur(20px);padding:16px 0;box-shadow:0 4px 30px rgba(0,0,0,0.3)}
+.navbar .container{display:flex;justify-content:space-between;align-items:center}
+.logo{font-family:"Playfair Display",serif;font-size:28px;font-weight:700;color:var(--text-primary);text-decoration:none}
+.logo span{color:var(--accent)}
+.nav-links{display:flex;align-items:center;gap:40px;list-style:none}
+.nav-links a{color:var(--text-secondary);text-decoration:none;font-weight:500;transition:color 0.3s ease;position:relative}
+.nav-links a::after{content:"";position:absolute;bottom:-4px;left:0;width:0;height:2px;background:var(--accent);transition:width 0.3s ease}
+.nav-links a:hover{color:var(--text-primary)}
+.nav-links a:hover::after{width:100%}
+.btn{display:inline-flex;align-items:center;gap:8px;padding:14px 28px;border-radius:50px;font-weight:600;font-size:15px;text-decoration:none;cursor:pointer;border:none;transition:all 0.3s ease}
+.btn-primary{background:linear-gradient(135deg,var(--accent),var(--accent-light));color:#fff;box-shadow:0 4px 20px rgba(233,69,96,0.4)}
+.btn-primary:hover{transform:translateY(-2px);box-shadow:0 8px 30px rgba(233,69,96,0.5)}
+.hero{min-height:100vh;display:flex;align-items:center;padding:120px 0 100px;position:relative}
+.hero-content{max-width:700px}
+.hero-badge{display:inline-flex;align-items:center;gap:8px;padding:8px 16px;background:var(--glass);border:1px solid var(--glass-border);border-radius:50px;font-size:14px;color:var(--text-secondary);margin-bottom:24px;backdrop-filter:blur(10px)}
+.hero-badge span{color:var(--success)}
+.hero h1{font-family:"Playfair Display",serif;font-size:3.5rem;font-weight:700;line-height:1.1;margin-bottom:24px}
+.hero h1 .gradient{background:linear-gradient(135deg,var(--accent),var(--accent-light));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.hero p{font-size:18px;color:var(--text-secondary);margin-bottom:40px;max-width:540px}
+.hero-buttons{display:flex;gap:16px;flex-wrap:wrap}
+.btn-outline{background:transparent;border:2px solid var(--glass-border);color:var(--text-primary)}
+.btn-outline:hover{border-color:var(--accent);background:rgba(233,69,96,0.1)}
+.floating-shapes{position:absolute;right:5%;top:50%;transform:translateY(-50%);width:450px;height:450px}
+.shape{position:absolute;border-radius:20px;background:var(--glass);border:1px solid var(--glass-border);backdrop-filter:blur(10px)}
+.shape-1{width:200px;height:280px;top:0;right:0;transform:rotate(15deg);animation:floatShape1 8s ease-in-out infinite}
+.shape-2{width:180px;height:140px;bottom:40px;right:180px;transform:rotate(-10deg);animation:floatShape2 10s ease-in-out infinite}
+.shape-3{width:120px;height:120px;bottom:0;right:50px;border-radius:50%;animation:floatShape3 12s ease-in-out infinite}
+@keyframes floatShape1{0%,100%{transform:rotate(15deg) translateY(0)}50%{transform:rotate(20deg) translateY(-20px)}}
+@keyframes floatShape2{0%,100%{transform:rotate(-10deg) translateX(0)}50%{transform:rotate(-5deg) translateX(15px)}}
+@keyframes floatShape3{0%,100%{transform:translateY(0)}50%{transform:translateY(-25px)}}
+section{padding:100px 0;position:relative}
+.section-header{text-align:center;margin-bottom:60px}
+.section-header h2{font-family:"Playfair Display",serif;font-size:2.5rem;margin-bottom:16px}
+.section-header p{color:var(--text-secondary);font-size:18px;max-width:600px;margin:0 auto}
+.steps-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:30px}
+.step-card{background:var(--glass);border:1px solid var(--glass-border);border-radius:24px;padding:40px 32px;text-align:center;backdrop-filter:blur(10px);transition:all 0.3s ease;position:relative;overflow:hidden}
+.step-card::before{content:"";position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--accent),var(--accent-light));transform:scaleX(0);transition:transform 0.3s ease}
+.step-card:hover{transform:translateY(-8px);box-shadow:0 20px 40px rgba(0,0,0,0.3)}
+.step-card:hover::before{transform:scaleX(1)}
+.step-number{width:50px;height:50px;background:linear-gradient(135deg,var(--accent),var(--accent-light));border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:20px;margin:0 auto 24px}
+.step-icon{width:64px;height:64px;background:rgba(233,69,96,0.1);border-radius:16px;display:flex;align-items:center;justify-content:center;margin:0 auto 20px;font-size:28px}
+.step-card h3{font-size:1.25rem;margin-bottom:12px}
+.step-card p{color:var(--text-secondary);font-size:15px}
+.features-section{background:linear-gradient(180deg,transparent,rgba(233,69,96,0.03),transparent)}
+.features-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:24px}
+.feature-card{background:var(--glass);border:1px solid var(--glass-border);border-radius:20px;padding:32px 24px;text-align:center;backdrop-filter:blur(10px);transition:all 0.3s ease}
+.feature-card:hover{transform:translateY(-5px);border-color:var(--accent)}
+.feature-icon{width:60px;height:60px;background:linear-gradient(135deg,rgba(233,69,96,0.2),rgba(255,107,107,0.1));border-radius:16px;display:flex;align-items:center;justify-content:center;margin:0 auto 20px;font-size:26px}
+.feature-card h3{font-size:1.1rem;margin-bottom:8px}
+.feature-card p{color:var(--text-secondary);font-size:14px}
+.portfolio-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+.portfolio-item{position:relative;border-radius:20px;overflow:hidden;aspect-ratio:4/3;cursor:pointer;background:var(--glass);border:1px solid var(--glass-border)}
+.portfolio-item::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,transparent 40%,rgba(15,15,26,0.9) 100%)}
+.portfolio-overlay{position:absolute;bottom:0;left:0;right:0;padding:24px;z-index:2}
+.portfolio-tag{display:inline-block;padding:6px 14px;background:var(--accent);border-radius:20px;font-size:12px;font-weight:600;text-transform:uppercase;letter-spacing:0.5px;margin-bottom:8px}
+.portfolio-overlay h3{font-size:1.1rem;font-weight:600}
+.portfolio-placeholder{width:100%;height:100%;min-height:200px;display:flex;align-items:center;justify-content:center;font-size:64px;background:linear-gradient(135deg,var(--secondary),var(--surface))}
+.form-section{background:linear-gradient(180deg,transparent,rgba(22,33,62,0.3),transparent)}
+.form-container{max-width:600px;margin:0 auto;background:var(--glass);border:1px solid var(--glass-border);border-radius:32px;padding:48px;backdrop-filter:blur(20px)}
+.form-progress{display:flex;justify-content:space-between;margin-bottom:40px;position:relative}
+.form-progress::before{content:"";position:absolute;top:20px;left:40px;right:40px;height:2px;background:var(--glass-border)}
+.progress-step{display:flex;flex-direction:column;align-items:center;position:relative;z-index:1}
+.progress-dot{width:40px;height:40px;border-radius:50%;background:var(--surface);border:2px solid var(--glass-border);display:flex;align-items:center;justify-content:center;font-weight:600;margin-bottom:8px;transition:all 0.3s ease}
+.progress-step.active .progress-dot{background:var(--accent);border-color:var(--accent)}
+.progress-step.completed .progress-dot{background:var(--success);border-color:var(--success)}
+.progress-label{font-size:13px;color:var(--text-secondary)}
+.progress-step.active .progress-label{color:var(--text-primary)}
+.form-step{display:none;animation:fadeIn 0.4s ease}
+.form-step.active{display:block}
+@keyframes fadeIn{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
+.form-step h3{font-family:"Playfair Display",serif;font-size:1.5rem;margin-bottom:8px;text-align:center}
+.form-step>p{color:var(--text-secondary);text-align:center;margin-bottom:32px}
+.option-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:16px;margin-bottom:32px}
+.option-card{padding:24px;background:var(--surface);border:2px solid var(--glass-border);border-radius:16px;cursor:pointer;text-align:center;transition:all 0.3s ease}
+.option-card:hover{border-color:var(--accent)}
+.option-card.selected{border-color:var(--accent);background:rgba(233,69,96,0.1)}
+.option-card .icon{font-size:32px;margin-bottom:8px}
+.option-card span{font-weight:500}
+.form-group{margin-bottom:24px}
+.form-group label{display:block;font-weight:500;margin-bottom:8px}
+.form-group input{width:100%;padding:16px 20px;background:var(--surface);border:2px solid var(--glass-border);border-radius:12px;color:var(--text-primary);font-size:16px;font-family:inherit;transition:border-color 0.3s ease}
+.form-group input:focus{outline:none;border-color:var(--accent)}
+.form-group input::placeholder{color:var(--text-secondary)}
+.form-buttons{display:flex;gap:16px;margin-top:32px}
+.form-buttons .btn{flex:1;justify-content:center}
+.btn-secondary{background:var(--surface);color:var(--text-primary);border:2px solid var(--glass-border)}
+.btn-secondary:hover{border-color:var(--text-secondary)}
+.success-message{text-align:center;padding:40px 20px;display:none}
+.success-message.active{display:block;animation:fadeIn 0.5s ease}
+.success-icon{width:80px;height:80px;background:linear-gradient(135deg,var(--success),#22c55e);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:40px;margin:0 auto 24px;animation:successPop 0.5s ease}
+@keyframes successPop{0%{transform:scale(0)}50%{transform:scale(1.2)}100%{transform:scale(1)}}
+.success-message h3{font-family:"Playfair Display",serif;font-size:1.75rem;margin-bottom:12px}
+.success-message p{color:var(--text-secondary)}
+.testimonials-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+.testimonial-card{background:var(--glass);border:1px solid var(--glass-border);border-radius:20px;padding:32px;backdrop-filter:blur(10px)}
+.testimonial-stars{color:#fbbf24;font-size:18px;margin-bottom:16px}
+.testimonial-text{font-size:15px;line-height:1.7;margin-bottom:20px;color:var(--text-secondary)}
+.testimonial-author{font-weight:600}
+.testimonial-type{font-size:13px;color:var(--accent)}
+.faq-container{max-width:800px;margin:0 auto}
+.faq-item{background:var(--glass);border:1px solid var(--glass-border);border-radius:16px;margin-bottom:16px;overflow:hidden;backdrop-filter:blur(10px)}
+.faq-question{padding:24px;display:flex;justify-content:space-between;align-items:center;cursor:pointer;font-weight:600;font-size:17px;transition:color 0.3s ease}
+.faq-question:hover{color:var(--accent)}
+.faq-icon{font-size:24px;transition:transform 0.3s ease}
+.faq-item.active .faq-icon{transform:rotate(45deg)}
+.faq-answer{max-height:0;overflow:hidden;transition:max-height 0.3s ease,padding 0.3s ease}
+.faq-item.active .faq-answer{max-height:300px;padding:0 24px 24px}
+.faq-answer p{color:var(--text-secondary);line-height:1.7}
+footer{background:var(--surface);padding:60px 0 30px;border-top:1px solid var(--glass-border)}
+.footer-content{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:40px;margin-bottom:40px}
+.footer-brand .logo{margin-bottom:16px;display:inline-block}
+.footer-brand p{color:var(--text-secondary);font-size:14px;max-width:300px}
+.footer-column h4{font-size:15px;font-weight:600;margin-bottom:20px}
+.footer-column ul{list-style:none}
+.footer-column li{margin-bottom:12px}
+.footer-column a{color:var(--text-secondary);text-decoration:none;font-size:14px;transition:color 0.3s ease}
+.footer-column a:hover{color:var(--accent)}
+.footer-bottom{text-align:center;padding-top:30px;border-top:1px solid var(--glass-border);color:var(--text-secondary);font-size:14px}
+.mobile-toggle{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:10px}
+.mobile-toggle span{width:24px;height:2px;background:var(--text-primary);transition:all 0.3s ease}
+@media(max-width:1024px){.features-grid{grid-template-columns:repeat(2,1fr)}.floating-shapes{display:none}.footer-content{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:768px){.nav-links{display:none}.mobile-toggle{display:flex}.hero h1{font-size:2.5rem}.hero p{font-size:16px}.steps-grid,.portfolio-grid,.testimonials-grid{grid-template-columns:1fr}.features-grid{grid-template-columns:1fr}.form-container{padding:32px 24px}.option-grid{grid-template-columns:1fr}.form-buttons{flex-direction:column}.footer-content{grid-template-columns:1fr;text-align:center}.footer-brand p{max-width:100%}section{padding:60px 0}.section-header h2{font-size:2rem}}
+.fade-in{opacity:0;transform:translateY(30px);transition:opacity 0.6s ease,transform 0.6s ease}
+.fade-in.visible{opacity:1;transform:translateY(0)}
+</style>
+</head>
+<body>
+<div class="bg-effects"><div class="orb orb-1"></div><div class="orb orb-2"></div></div>
+<nav class="navbar"><div class="container"><a href="#" class="logo">Reno<span>Match</span></a><ul class="nav-links"><li><a href="#how-it-works">How It Works</a></li><li><a href="#portfolio">Portfolio</a></li><li><a href="#faq">FAQ</a></li><li><a href="#get-quotes" class="btn btn-primary">Get Quotes</a></li></ul><div class="mobile-toggle"><span></span><span></span><span></span></div></div></nav>
+<section class="hero"><div class="container"><div class="hero-content"><div class="hero-badge"><span>✓</span> Trusted by 3,600+ homeowners</div><h1>Find Your Perfect <span class="gradient">Interior Designer</span></h1><p>Get FREE personalized quotes from verified interior designers matched to your renovation preferences. No hidden fees, no commissions.</p><div class="hero-buttons"><a href="#get-quotes" class="btn btn-primary">Get Your Matches</a><a href="#how-it-works" class="btn btn-outline">Learn More</a></div></div></div><div class="floating-shapes"><div class="shape shape-1"></div><div class="shape shape-2"></div><div class="shape shape-3"></div></div></section>
+<section id="how-it-works"><div class="container"><div class="section-header fade-in"><h2>How It Works</h2><p>Getting matched with trusted interior designers is simple</p></div><div class="steps-grid"><div class="step-card fade-in"><div class="step-number">1</div><div class="step-icon">📋</div><h3>Tell Us Your Needs</h3><p>Share your property type, budget, and renovation preferences.</p></div><div class="step-card fade-in"><div class="step-number">2</div><div class="step-icon">🎯</div><h3>Get Matched</h3><p>We match you with up to 5 verified interior design firms.</p></div><div class="step-card fade-in"><div class="step-number">3</div><div class="step-icon">🏠</div><h3>Choose & Renovate</h3><p>Compare quotes and start your dream home transformation.</p></div></div></div></section>
+<section class="features-section"><div class="container"><div class="section-header fade-in"><h2>Why Choose Us</h2><p>Were committed to making your renovation journey smooth</p></div><div class="features-grid"><div class="feature-card fade-in"><div class="feature-icon">✅</div><h3>Verified Designers</h3><p>All firms vetted through strict criteria</p></div><div class="feature-card fade-in"><div class="feature-icon">💰</div><h3>No Hidden Fees</h3><p>Completely free service</p></div><div class="feature-card fade-in"><div class="feature-icon">🛡️</div><h3>$50K Guarantee</h3><p>Protect your deposits</p></div><div class="feature-card fade-in"><div class="feature-icon">⭐</div><h3>3,600+ Reviews</h3><p>Google-rated 4.8 stars</p></div></div></div></section>
+<section id="portfolio"><div class="container"><div class="section-header fade-in"><h2>Popular Projects</h2><p>Get inspired by renovation projects</p></div><div class="portfolio-grid"><div class="portfolio-item fade-in"><div class="portfolio-placeholder">🏠</div><div class="portfolio-overlay"><span class="portfolio-tag">HDB</span><h3>Modern Minimalist</h3></div></div><div class="portfolio-item fade-in"><div class="portfolio-placeholder">🏢</div><div class="portfolio-overlay"><span class="portfolio-tag">Condo</span><h3>Luxury Penthouse</h3></div></div><div class="portfolio-item fade-in"><div class="portfolio-placeholder">🏡</div><div class="portfolio-overlay"><span class="portfolio-tag">Landed</span><h3>Contemporary Home</h3></div></div><div class="portfolio-item fade-in"><div class="portfolio-placeholder">🛋️</div><div class="portfolio-overlay"><span class="portfolio-tag">HDB</span><h3>Scandinavian Style</h3></div></div><div class="portfolio-item fade-in"><div class="portfolio-placeholder">✨</div><div class="portfolio-overlay"><span class="portfolio-tag">Condo</span><h3>Industrial Loft</h3></div></div><div class="portfolio-item fade-in"><div class="portfolio-placeholder">🎨</div><div class="portfolio-overlay"><span class="portfolio-tag">HDB</span><h3>Japanese-inspired</h3></div></div></div></div></section>
+<section id="get-quotes" class="form-section"><div class="container"><div class="section-header fade-in"><h2>Get Your Free Quotes</h2><p>Fill in your details and well match you with interior designers</p></div><div class="form-container fade-in"><div class="form-progress"><div class="progress-step active" data-step="1"><div class="progress-dot">1</div><span class="progress-label">Property</span></div><div class="progress-step" data-step="2"><div class="progress-dot">2</div><span class="progress-label">Budget</span></div><div class="progress-step" data-step="3"><div class="progress-dot">3</div><span class="progress-label">Contact</span></div></div><div class="form-step active" data-step="1"><h3>Property Type</h3><p>What type of property are you renovating?</p><div class="option-grid" id="property-options"><div class="option-card" data-value="HDB"><div class="icon">🏢</div><span>HDB</span></div><div class="option-card" data-value="Condo"><div class="icon">🏙️</div><span>Condo</span></div><div class="option-card" data-value="Landed"><div class="icon">🏡</div><span>Landed</span></div><div class="option-card" data-value="Commercial"><div class="icon">🏬</div><span>Commercial</span></div></div><div class="form-buttons"><button class="btn btn-primary" id="step1-next">Continue</button></div></div><div class="form-step" data-step="2"><h3>Budget Range</h3><p>Whats your renovation budget?</p><div class="option-grid" id="budget-options"><div class="option-card" data-value="0-30k"><div class="icon">💵</div><span>S$0 - S$30K</span></div><div class="option-card" data-value="30-50k"><div class="icon">💰</div><span>S$30K - S$50K</span></div><div class="option-card" data-value="50-80k"><div class="icon">💎</div><span>S$50K - S$80K</span></div><div class="option-card" data-value="80k+"><div class="icon">👑</div><span>S$80K+</span></div></div><div class="form-buttons"><button class="btn btn-secondary" id="step2-back">Back</button><button class="btn btn-primary" id="step2-next">Continue</button></div></div><div class="form-step" data-step="3"><h3>Your Details</h3><p>Where should we send your matched quotes?</p><div class="form-group"><label>Full Name</label><input type="text" id="contact-name" placeholder="Enter your name"></div><div class="form-group"><label>Phone Number</label><input type="tel" id="contact-phone" placeholder="+65 XXXX XXXX"></div><div class="form-group"><label>Email Address</label><input type="email" id="contact-email" placeholder="your@email.com"></div><div class="form-buttons"><button class="btn btn-secondary" id="step3-back">Back</button><button class="btn btn-primary" id="submit-form">Get My Matches</button></div></div><div class="success-message" id="success-message"><div class="success-icon">✓</div><h3>Request Submitted!</h3><p>Well match you with up to 5 interior designers within 24 hours.</p></div></div></div></section>
+<section id="testimonials"><div class="container"><div class="section-header fade-in"><h2>What Homeowners Say</h2><p>Over 3,600+ Google reviews with 4.8 stars</p></div><div class="testimonials-grid"><div class="testimonial-card fade-in"><div class="testimonial-stars">★★★★★</div><p class="testimonial-text">"RenoMatch made finding an interior designer so easy! Got 3 quotes within a day."</p><p class="testimonial-author">- Sarah T.</p><p class="testimonial-type">HDB Renovation</p></div><div class="testimonial-card fade-in"><div class="testimonial-stars">★★★★★</div><p class="testimonial-text">"The $50K guarantee gave me peace of mind. Very professional service."</p><p class="testimonial-author">- Michael L.</p><p class="testimonial-type">Condo Renovation</p></div><div class="testimonial-card fade-in"><div class="testimonial-stars">★★★★★</div><p class="testimonial-text">"Highly recommend! The matched designers were all quality."</p><p class="testimonial-author">- Jennifer K.</p><p class="testimonial-type">HDB Renovation</p></div></div></div></section>
+<section id="faq"><div class="container"><div class="section-header fade-in"><h2>Frequently Asked Questions</h2><p>Everything you need to know</p></div><div class="faq-container"><div class="faq-item"><div class="faq-question">What is RenoMatch? <span class="faq-icon">+</span></div><div class="faq-answer"><p>RenoMatch is a renovation platform that connects homeowners with verified interior design firms in Singapore.</p></div></div><div class="faq-item"><div class="faq-question">Is the service really free? <span class="faq-icon">+</span></div><div class="faq-answer"><p>Yes! Our service is completely free for homeowners. We dont charge any commissions.</p></div></div><div class="faq-item"><div class="faq-question">How do I get started? <span class="faq-icon">+</span></div><div class="faq-answer"><p>Simply fill out the form above with your property type, budget, and contact details.</p></div></div><div class="faq-item"><div class="faq-question">What is the $50K Guarantee? <span class="faq-icon">+</span></div><div class="faq-answer"><p>The $50K Guarantee protects your renovation deposits in the rare event that your interior firm becomes insolvent.</p></div></div></div></div></section>
+<footer><div class="container"><div class="footer-content"><div class="footer-brand"><a href="#" class="logo">Reno<span>Match</span></a><p>Connecting homeowners with trusted interior designers in Singapore since 2024.</p></div><div class="footer-column"><h4>Company</h4><ul><li><a href="#">About Us</a></li><li><a href="#">How It Works</a></li><li><a href="#">Contact</a></li></ul></div><div class="footer-column"><h4>Services</h4><ul><li><a href="#">HDB Renovation</a></li><li><a href="#">Condo Renovation</a></li><li><a href="#">Landed Property</a></li></ul></div><div class="footer-column"><h4>Support</h4><ul><li><a href="#">FAQ</a></li><li><a href="#">Terms of Service</a></li><li><a href="#">Privacy Policy</a></li></ul></div></div><div class="footer-bottom"><p>© 2024 RenoMatch. All rights reserved.</p></div></div></footer>
+<script>
+document.querySelectorAll(".option-card").forEach(card=>{card.addEventListener("click",function(){this.parentElement.querySelectorAll(".option-card").forEach(c=>c.classList.remove("selected"));this.classList.add("selected")})});
+let currentStep=1,formData={property:"",budget:"",name:"",phone:"",email:""};
+function updateProgress(){document.querySelectorAll(".progress-step").forEach(s=>{const step=parseInt(s.dataset.step);s.classList.remove("active","completed");if(step<currentStep)s.classList.add("completed");if(step===currentStep)s.classList.add("active")});document.querySelectorAll(".form-step").forEach(s=>{s.classList.remove("active");if(parseInt(s.dataset.step)===currentStep)s.classList.add("active")})}
+document.getElementById("step1-next").addEventListener("click",function(){const selected=document.querySelector("#property-options .option-card.selected");if(!selected)return alert("Please select a property type");formData.property=selected.dataset.value;currentStep=2;updateProgress()});
+document.getElementById("step2-back").addEventListener("click",function(){currentStep=1;updateProgress()});
+document.getElementById("step2-next").addEventListener("click",function(){const selected=document.querySelector("#budget-options .option-card.selected");if(!selected)return alert("Please select a budget range");formData.budget=selected.dataset.value;currentStep=3;updateProgress()});
+document.getElementById("step3-back").addEventListener("click",function(){currentStep=2;updateProgress()});
+document.getElementById("submit-form").addEventListener("click",function(){formData.name=document.getElementById("contact-name").value;formData.phone=document.getElementById("contact-phone").value;formData.email=document.getElementById("contact-email").value;if(!formData.name||!formData.phone||!formData.email)return alert("Please fill in all fields");console.log("Form Submitted:",formData);localStorage.setItem("renoMatchLead",JSON.stringify(formData));document.querySelectorAll(".form-step").forEach(s=>s.classList.remove("active"));document.getElementById("success-message").classList.add("active");document.querySelectorAll(".progress-step").forEach(s=>s.classList.add("completed"))});
+document.querySelectorAll(".faq-question").forEach(q=>{q.addEventListener("click",function(){const item=this.parentElement;item.classList.toggle("active")})});
+window.addEventListener("scroll",function(){document.querySelector(".navbar").classList.toggle("scrolled",window.scrollY>100)});
+const observer=new IntersectionObserver((entries)=>{entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add("visible")})},{threshold:0.1});
+document.querySelectorAll(".fade-in").forEach(el=>observer.observe(el));
+</script>
+</body>
+</html>
