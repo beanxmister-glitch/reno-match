@@ -319,3 +319,172 @@ footer{background:var(--surface);padding:80px 0 30px;border-top:1px solid var(--
 <div class="portfolio-item fade-in"><div class="portfolio-placeholder">🏡</div><div class="portfolio-overlay"><span class="portfolio-tag">Landed</span><h3>Contemporary Home</h3><p>Sentosa</p></div></div>
 <div class="portfolio-item fade-in"><div class="portfolio-placeholder">✨</div><div class="portfolio-overlay"><span class="portfolio-tag">HDB 4-Room</span><h3>Scandinavian Style</h3><p>Toa Payoh</p></div></div>
 <div class="portfolio-item fade-in"><div class="portfolio-placeholder">🎨</div><div class="portfolio-overlay"><span class="portfolio-tag">
+
+<!-- Contact Section -->
+<section id="contact">
+<div class="container">
+<div class="section-header fade-in"><h2>Get In Touch</h2><p>Have questions? Wed love to hear from you</p></div>
+<div class="contact-container">
+<div class="contact-info">
+<h3>Contact Information</h3>
+<div class="contact-item"><i class="fas fa-map-marker-alt"></i><div><strong>Address</strong><p>123 Orchard Road, Singapore 238804</p></div></div>
+<div class="contact-item"><i class="fas fa-phone"></i><div><strong>Phone</strong><p>+65 6123 4567</p></div></div>
+<div class="contact-item"><i class="fas fa-envelope"></i><div><strong>Email</strong><p>hello@renomatch.sg</p></div></div>
+<div class="contact-item"><i class="fas fa-clock"></i><div><strong>Hours</strong><p>Mon - Sat: 9AM - 7PM</p></div></div>
+</div>
+<div class="contact-form-wrapper">
+<form id="contactForm">
+<div class="form-row">
+<div class="form-group"><label>Name *</label><input type="text" id="contactName" required placeholder="Your name"></div>
+<div class="form-group"><label>Email *</label><input type="email" id="contactEmail" required placeholder="your@email.com"></div>
+</div>
+<div class="form-group"><label>Phone</label><input type="tel" id="contactPhone" placeholder="+65 XXXX XXXX"></div>
+<div class="form-group"><label>Message *</label><textarea id="contactMessage" rows="4" required placeholder="How can we help you?"></textarea></div>
+<button type="submit" class="btn btn-primary">Send Message <i class="fas fa-paper-plane"></i></button>
+</form>
+<div class="contact-success" id="contactSuccess">
+<div class="success-icon"><i class="fas fa-check"></i></div>
+<h3>Message Sent!</h3><p>Well get back to you within 24 hours.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+
+<style>
+.contact-container{display:grid;grid-template-columns:1fr 1.5fr;gap:60px;align-items:start}
+.contact-info{background:var(--glass);border:1px solid var(--glass-border);border-radius:28px;padding:40px}
+.contact-info h3{font-size:1.5rem;margin-bottom:32px}
+.contact-item{display:flex;gap:20px;margin-bottom:28px}
+.contact-item:last-child{margin-bottom:0}
+.contact-item i{width:50px;height:50px;background:var(--gradient-accent);border-radius:14px;display:flex;align-items:center;justify-content:center;font-size:20px;flex-shrink:0}
+.contact-item strong{display:block;margin-bottom:4px}
+.contact-item p{color:var(--text-secondary);font-size:15px;margin:0}
+.contact-form-wrapper{background:var(--glass);border:1px solid var(--glass-border);border-radius:28px;padding:40px;position:relative}
+.form-row{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+.contact-form-wrapper textarea{width:100%;padding:16px 20px;background:var(--surface);border:2px solid var(--glass-border);border-radius:14px;color:var(--text-primary);font-size:16px;font-family:inherit;resize:vertical;min-height:120px}
+.contact-form-wrapper textarea:focus{outline:none;border-color:var(--accent)}
+.contact-success{position:absolute;inset:0;background:var(--glass);border-radius:28px;display:none;align-items:center;justify-content:center;text-align:center;padding:40px}
+.contact-success.active{display:flex;flex-direction:column}
+.contact-success .success-icon{width:80px;height:80px;background:var(--success);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:36px;margin-bottom:20px}
+@media(max-width:900px){.contact-container{grid-template-columns:1fr}}
+</style>
+
+<script>
+// Lead Form Functionality
+const leadForm={step:1,data:{property:'',budget:'',name:'',phone:'',email:''},valid:false};
+
+document.querySelectorAll('.option-card').forEach(card=>{
+  card.addEventListener('click',function(){
+    const grid=this.closest('.option-grid');
+    grid.querySelectorAll('.option-card').forEach(c=>c.classList.remove('selected'));
+    this.classList.add('selected');
+  });
+});
+
+function updateProgress(){
+  document.querySelectorAll('.progress-step').forEach(s=>{
+    const step=parseInt(s.dataset.step);
+    s.classList.remove('active','completed');
+    if(step<leadForm.step)s.classList.add('completed');
+    if(step===leadForm.step)s.classList.add('active');
+  });
+  document.querySelectorAll('.form-step').forEach(s=>{
+    s.classList.remove('active');
+    if(parseInt(s.dataset.step)===leadForm.step)s.classList.add('active');
+  });
+}
+
+document.getElementById('step1-next').addEventListener('click',function(){
+  const selected=document.querySelector('#property-options .option-card.selected');
+  if(!selected){alert('Please select a property type');return;}
+  leadForm.data.property=selected.dataset.value;
+  leadForm.step=2;updateProgress();
+});
+
+document.getElementById('step2-back').addEventListener('click',function(){leadForm.step=1;updateProgress();});
+
+document.getElementById('step2-next').addEventListener('click',function(){
+  const selected=document.querySelector('#budget-options .option-card.selected');
+  if(!selected){alert('Please select a budget range');return;}
+  leadForm.data.budget=selected.dataset.value;
+  leadForm.step=3;updateProgress();
+});
+
+document.getElementById('step3-back').addEventListener('click',function(){leadForm.step=2;updateProgress();});
+
+document.getElementById('submit-form').addEventListener('click',function(){
+  leadForm.data.name=document.getElementById('contact-name').value.trim();
+  leadForm.data.phone=document.getElementById('contact-phone').value.trim();
+  leadForm.data.email=document.getElementById('contact-email').value.trim();
+  if(!leadForm.data.name||!leadForm.data.phone||!leadForm.data.email){
+    alert('Please fill in all fields');return;
+  }
+  if(!validateEmail(leadForm.data.email)){alert('Please enter a valid email');return;}
+  
+  const leadData={...leadForm.data,submittedAt:new Date().toISOString(),source:'RenoMatch Website'};
+  localStorage.setItem('renoMatchLead',JSON.stringify(leadData));
+  console.log('Lead submitted:',leadData);
+  
+  // Show success
+  document.querySelectorAll('.form-step').forEach(s=>s.classList.remove('active'));
+  document.getElementById('success-message').classList.add('active');
+  document.querySelectorAll('.progress-step').forEach(s=>s.classList.add('completed'));
+});
+
+function validateEmail(email){return/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);}
+
+// Contact Form
+document.getElementById('contactForm').addEventListener('submit',function(e){
+  e.preventDefault();
+  const data={name:document.getElementById('contactName').value,email:document.getElementById('contactEmail').value,phone:document.getElementById('contactPhone').value,message:document.getElementById('contactMessage').value,submittedAt:new Date().toISOString()};
+  localStorage.setItem('renoMatchContact',JSON.stringify(data));
+  console.log('Contact form:',data);
+  document.getElementById('contactForm').style.display='none';
+  document.getElementById('contactSuccess').classList.add('active');
+});
+
+// FAQ Accordion
+document.querySelectorAll('.faq-question').forEach(q=>{
+  q.addEventListener('click',function(){this.closest('.faq-item').classList.toggle('active');});
+});
+
+// Navbar scroll
+window.addEventListener('scroll',function(){
+  document.getElementById('navbar').classList.toggle('scrolled',window.scrollY>100);
+});
+
+// Mobile menu
+document.getElementById('mobileToggle').addEventListener('click',function(){
+  document.getElementById('mobileMenu').classList.toggle('active');
+  document.getElementById('mobileOverlay').classList.toggle('active');
+});
+document.getElementById('mobileOverlay').addEventListener('click',function(){
+  document.getElementById('mobileMenu').classList.remove('active');
+  this.classList.remove('active');
+});
+document.querySelectorAll('.mobile-link').forEach(link=>{
+  link.addEventListener('click',function(){
+    document.getElementById('mobileMenu').classList.remove('active');
+    document.getElementById('mobileOverlay').classList.remove('active');
+  });
+});
+
+// Scroll animations
+const observer=new IntersectionObserver((entries)=>{
+  entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add('visible');});
+},{threshold:0.1,rootMargin:'0px 0px -50px 0px'});
+document.querySelectorAll('.fade-in').forEach(el=>observer.observe(el));
+
+// Smooth scroll for anchor links
+document.querySelectorAll('a[href^="#"]').forEach(anchor=>{
+  anchor.addEventListener('click',function(e){
+    e.preventDefault();
+    const target=document.querySelector(this.getAttribute('href'));
+    if(target){target.scrollIntoView({behavior:'smooth',block:'start'});}
+  });
+});
+</script>
+</body>
+</html>
