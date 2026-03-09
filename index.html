@@ -318,7 +318,95 @@ footer{background:var(--surface);padding:80px 0 30px;border-top:1px solid var(--
 <div class="portfolio-item fade-in"><div class="portfolio-placeholder">🏢</div><div class="portfolio-overlay"><span class="portfolio-tag">Condo</span><h3>Luxury Penthouse</h3><p>District 9</p></div></div>
 <div class="portfolio-item fade-in"><div class="portfolio-placeholder">🏡</div><div class="portfolio-overlay"><span class="portfolio-tag">Landed</span><h3>Contemporary Home</h3><p>Sentosa</p></div></div>
 <div class="portfolio-item fade-in"><div class="portfolio-placeholder">✨</div><div class="portfolio-overlay"><span class="portfolio-tag">HDB 4-Room</span><h3>Scandinavian Style</h3><p>Toa Payoh</p></div></div>
-<div class="portfolio-item fade-in"><div class="portfolio-placeholder">🎨</div><div class="portfolio-overlay"><span class="portfolio-tag">
+<div class="portfolio-item fade-in"><div class="portfolio-placeholder">🎨</div><div class="portfolio-overlay"><span class="portfolio-tag">Condo</span><h3>Modern Japanese</h3><p>Holland Village</p></div></div>
+</div>
+</div>
+</section>
+
+<!-- FAQ Section -->
+<section id="faq">
+<div class="container">
+<div class="section-header fade-in"><h2>Frequently Asked Questions</h2><p>Everything you need to know about our service</p></div>
+<div class="faq-container">
+<div class="faq-item fade-in">
+<div class="faq-question">How does RenoMatch work?<span class="faq-icon">+</span></div>
+<div class="faq-answer"><p>Simply tell us about your property type, budget, and renovation preferences. We'll match you with up to 5 verified interior design firms that fit your needs within 24 hours.</p></div>
+</div>
+<div class="faq-item fade-in">
+<div class="faq-question">Is the service really free?<span class="faq-icon">+</span></div>
+<div class="faq-answer"><p>Yes! RenoMatch is completely free for homeowners. We partner with interior design firms who pay us, not you. There's no hidden fees or commissions.</p></div>
+</div>
+<div class="faq-item fade-in">
+<div class="faq-question">How are designers verified?<span class="faq-icon">+</span></div>
+<div class="faq-answer"><p>All our partner designers go through strict ACRA verification. We check business registration, past projects, reviews, and financial stability before accepting them into our network.</p></div>
+</div>
+<div class="faq-item fade-in">
+<div class="faq-question">What is the $50K Guarantee?<span class="faq-icon">+</span></div>
+<div class="faq-answer"><p>Our deposit protection scheme covers up to S$50,000 of your payment to the interior designer. If something goes wrong, we'll help you recover your deposit.</p></div>
+</div>
+<div class="faq-item fade-in">
+<div class="faq-question">How long does matching take?<span class="faq-icon">+</span></div>
+<div class="faq-answer"><p>Most homeowners receive their matched designer profiles within 24 hours. You'll get detailed quotes and can start comparing right away.</p></div>
+</div>
+<div class="faq-item fade-in">
+<div class="faq-question">Can I negotiate with multiple designers?<span class="faq-icon">+</span></div>
+<div class="faq-answer"><p>Absolutely! You can receive quotes from up to 5 designers and negotiate directly with each one. There's no obligation to choose any specific designer.</p></div>
+</div>
+</div>
+</div>
+</section>
+
+<!-- Get Quotes Section -->
+<section id="get-quotes">
+<div class="container">
+<div class="section-header fade-in"><h2>Get Your Free Quotes</h2><p>Answer a few questions to get matched with your perfect interior designer</p></div>
+<div class="form-container">
+<div class="progress-bar">
+<div class="progress-step active" data-step="1"><div class="progress-dot">1</div><div class="progress-label">Property</div></div>
+<div class="progress-step" data-step="2"><div class="progress-dot">2</div><div class="progress-label">Budget</div></div>
+<div class="progress-step" data-step="3"><div class="progress-dot">3</div><div class="progress-label">Contact</div></div>
+</div>
+<form id="leadForm">
+<div class="form-step active" data-step="1">
+<h3>What type of property are you renovating?</h3>
+<p>Select your property type to get matched with specialists</p>
+<div class="option-grid">
+<div class="option-card selected" data-value="hdb"><div class="option-icon">🏠</div><div class="option-title">HDB</div><div class="option-desc">Flat/Executive Condo</div></div>
+<div class="option-card" data-value="condo"><div class="option-icon">🏢</div><div class="option-title">Condo</div><div class="option-desc">Private Condominium</div></div>
+<div class="option-card" data-value="landed"><div class="option-icon">🏡</div><div class="option-title">Landed</div><div class="option-desc">Terrace/Semi-D/Bungalow</div></div>
+<div class="option-card" data-value="commercial"><div class="option-icon">🏪</div><div class="option-title">Commercial</div><div class="option-desc">Office/Retail/Restaurant</div></div>
+</div>
+<div class="form-buttons"><button type="button" class="btn btn-primary" id="step1-next">Next Step <i class="fas fa-arrow-right"></i></button></div>
+</div>
+<div class="form-step" data-step="2">
+<h3>What's your renovation budget?</h3>
+<p>This helps us match you with designers who fit your range</p>
+<div class="option-grid">
+<div class="option-card" data-value="30k"><div class="option-icon">💵</div><div class="option-title">S$30,000 - S$50,000</div><div class="option-desc">Basic renovation</div></div>
+<div class="option-card" data-value="50k"><div class="option-icon">💰</div><div class="option-title">S$50,000 - S$80,000</div><div class="option-desc">Standard renovation</div></div>
+<div class="option-card selected" data-value="80k"><div class="option-icon">💎</div><div class="option-title">S$80,000 - S$120,000</div><div class="option-desc">Premium renovation</div></div>
+<div class="option-card" data-value="120k"><div class="option-icon">👑</div><div class="option-title">S$120,000+</div><div class="option-desc">Luxury renovation</div></div>
+</div>
+<div class="form-buttons"><button type="button" class="btn btn-outline" id="step2-back"><i class="fas fa-arrow-left"></i> Back</button><button type="button" class="btn btn-primary" id="step2-next">Next Step <i class="fas fa-arrow-right"></i></button></div>
+</div>
+<div class="form-step" data-step="3">
+<h3>Where should we send your quotes?</h3>
+<p>Get up to 5 personalized quotes from verified designers</p>
+<div class="form-group"><label>Full Name *</label><input type="text" id="contact-name" required placeholder="Your full name"></div>
+<div class="form-group"><label>Phone Number *</label><input type="tel" id="contact-phone" required placeholder="+65 XXXX XXXX"></div>
+<div class="form-group"><label>Email Address *</label><input type="email" id="contact-email" required placeholder="your@email.com"></div>
+<div class="form-group"><label>Property Address (Optional)</label><input type="text" placeholder="Your property location"></div>
+<div class="form-buttons"><button type="button" class="btn btn-outline" id="step3-back"><i class="fas fa-arrow-left"></i> Back</button><button type="submit" class="btn btn-primary">Get My Quotes <i class="fas fa-paper-plane"></i></button></div>
+</div>
+</form>
+<div class="form-success" id="formSuccess">
+<div class="success-icon">🎉</div>
+<h3>You're All Set!</h3><p>We've received your request. Check your phone for messages from up to 5 designers within 24 hours.</p>
+<p class="success-note">Questions? Call us at +65 6123 4567</p>
+</div>
+</div>
+</div>
+</section>
 
 <!-- Contact Section -->
 <section id="contact">
