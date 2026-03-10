@@ -162,3 +162,32 @@
 8. ✅ Responsive on mobile/tablet/desktop
 9. ✅ Animations are smooth (60fps)
 10. ✅ All fonts load correctly
+
+---
+
+## Browser Testing Notes
+
+### Zen Browser Compatibility
+**Zen Browser** (https://zen-browser.app) - Firefox-based, privacy-focused browser
+
+**Test in Zen Browser for:**
+- [ ] Verify all features work on Firefox 148+ engine
+- [ ] Test split-view / workspaces functionality
+- [ ] Check privacy-focused features don't block any functionality
+- [ ] Verify animations render correctly
+
+**Zen Browser Key Features to Consider:**
+- Workspaces (tab organization)
+- Split view (side-by-side tabs)
+- Live folders (GitHub PRs, RSS feeds)
+- Enhanced privacy (may affect some analytics/tracking)
+
+**Also test in:**
+- Chrome/Chromium
+- Safari
+- Firefox (standard)
+- Mobile browsers (iOS Safari, Chrome Android)
+
+---
+
+*Last updated: Mar 9, 2026*
